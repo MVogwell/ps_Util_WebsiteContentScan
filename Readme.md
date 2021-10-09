@@ -22,7 +22,7 @@ Along with the above functionality the script can optionally be started to searc
 
 For example, if you search the BBC again for the regex pattern Business|Businesses and wanted to discover all of the pages that also contained the words "British Glass" you would start the script like this:
 
-.\ps_Util_WebsiteStringScan.ps1 -url "https://www.bbc.co.uk/news/business-58852612" -SearchRegex "Business" -ExactKeyword "British Glass"
+`.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business" -ExactKeyword "British Glass"`
 
 If the "ExtactKeyword" is found it will be displayed in the results otherwise it will report "Not Found".
 
@@ -35,6 +35,45 @@ The script will only search responding html or text content - it will not search
 
 ### Finishing the search
 To finish the search you can either wait until all links from the site have been explored or you can use Ctrl and C to stop the search
+
+*Note: The search won't end until the current page has completed scanning*
+
+&nbsp;<br>
+
+### Advanced: Excluding domains
+It is possible to exclude domains from the search. For example: If your initial search page (we'll use the example abc.com) links to the external pages:
+
+* http://*abc*.com/Page2.html
+* http://*abc*.com/Page3.html
+* http://*def*.com/page1.html
+* http://*def*.com/page2.html
+* http://*ghi*.com/pageA.html
+* http://*jkl*.com/Page8.html
+
+If you don't want it to search any pages from the site "def.com" then you would start the script like this:
+
+`# Create an array of sites to exclude containing one element:
+$ExcludedDomains = @("def.com")
+
+.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+
+&nbsp;<br>
+
+If you wanted to exclude multiple domains you would do it like this:
+$ExcludedDomains = @("def.com","jkl.com")
+
+.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+
+*Note that each domain to exclude is separated by a comma.*
+
+&nbsp;<br>
+
+### Advanced: Excluding specific pages from being searched
+It is also possible to exclude specific pages from being scanned. To do this start the search like this:
+$ExcludedPages = @("abc.com/Page")
+
+.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages
+
 
 &nbsp;<br><br>
 
