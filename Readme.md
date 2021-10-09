@@ -1,7 +1,7 @@
 # ps_Util_WebsiteContentScan.ps1
 
 ## About
-This PowerShell script can be used to search for a word or phrase on a website and any websites that are linked to from the original site. Once complete (or cancelled) it will display the results on which pages contained that or phrase.
+This PowerShell script can be used to search for a word or phrase on a website and any pages that are linked to from the original site. Once complete (or cancelled) it will display the results on which pages contained that or phrase.
 
 For example, if you wanted to search for the word "Business" on the site https://news.bbc.co.uk you would start the script by running:
 
@@ -11,7 +11,7 @@ For example, if you wanted to search for the word "Business" on the site https:/
 
 ### Regex
 
-The search word or phrase can use regex (https://en.wikipedia.org/wiki/Regular_expression) which means that patterns as well as exact words can be searched for.  For example if you wanted to for Business or Businesses you would use:
+The search word or phrase can use regex (https://en.wikipedia.org/wiki/Regular_expression) which means that patterns as well as exact words can be searched for.  For example if you wanted to search for Business or Businesses you would use:
 
 `.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business|Businesses"`
 
@@ -24,12 +24,12 @@ For example, if you search the BBC again for the regex pattern Business|Business
 
 `.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business" -ExactKeyword "British Glass"`
 
-If the "ExtactKeyword" is found it will be displayed in the results otherwise it will report "Not Found".
+If the "ExtactKeyword" is found it will be displayed in the results otherwise it will report "Not Found". Important: The "ExactKeyword" will only be searched for if the page matches the SearchRegex pattern.
 
 &nbsp;<br>
 
 ### What will the script search?
-The script will only search responding html or text content - it will not search the content of pdf or other document formats.
+The script will only search responding html or text content - it will not search the content of pdf or other document formats (yet).
 
 &nbsp;<br>
 
@@ -52,17 +52,17 @@ It is possible to exclude domains from the search. For example: If your initial 
 
 If you don't want it to search any pages from the site "def.com" then you would start the script like this:
 
-`# Create an array of sites to exclude containing one element:
-$ExcludedDomains = @("def.com")
+`# Create an array of sites to exclude containing one element:`
+`$ExcludedDomains = @("def.com")`
 
-.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
 
 &nbsp;<br>
 
 If you wanted to exclude multiple domains you would do it like this:
-$ExcludedDomains = @("def.com","jkl.com")
 
-.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+`$ExcludedDomains = @("def.com","jkl.com")`
+`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
 
 *Note that each domain to exclude is separated by a comma.*
 
@@ -70,9 +70,9 @@ $ExcludedDomains = @("def.com","jkl.com")
 
 ### Advanced: Excluding specific pages from being searched
 It is also possible to exclude specific pages from being scanned. To do this start the search like this:
-$ExcludedPages = @("abc.com/Page")
 
-.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages
+`$ExcludedPages = @("abc.com/Page")`
+`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages`
 
 
 &nbsp;<br><br>
@@ -110,4 +110,4 @@ Once completed, either by letting the search complete or using Ctrl+C to stop it
 &nbsp;<br><br>
 
 ## Version 
-Version 1.0 - Oct 2021
+Version 1.0 - Oct 2021 - Initial release
