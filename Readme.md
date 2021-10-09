@@ -53,6 +53,7 @@ It is possible to exclude domains from the search. For example: If your initial 
 If you don't want it to search any pages from the site "def.com" then you would start the script like this:
 
 `# Create an array of sites to exclude containing one element:`
+
 `$ExcludedDomains = @("def.com")`
 
 `.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
@@ -62,6 +63,7 @@ If you don't want it to search any pages from the site "def.com" then you would 
 If you wanted to exclude multiple domains you would do it like this:
 
 `$ExcludedDomains = @("def.com","jkl.com")`
+
 `.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
 
 *Note that each domain to exclude is separated by a comma.*
@@ -72,6 +74,7 @@ If you wanted to exclude multiple domains you would do it like this:
 It is also possible to exclude specific pages from being scanned. To do this start the search like this:
 
 `$ExcludedPages = @("abc.com/Page")`
+
 `.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages`
 
 
