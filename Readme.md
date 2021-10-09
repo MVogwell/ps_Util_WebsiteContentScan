@@ -5,7 +5,7 @@ This PowerShell script can be used to search for a word or phrase on a website a
 
 For example, if you wanted to search for the word "Business" on the site https://news.bbc.co.uk you would start the script by running:
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business"`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business"`
 
 &nbsp;<br>
 
@@ -13,7 +13,7 @@ For example, if you wanted to search for the word "Business" on the site https:/
 
 The search word or phrase can use regex (https://en.wikipedia.org/wiki/Regular_expression) which means that patterns as well as exact words can be searched for.  For example if you wanted to search for Business or Businesses you would use:
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business|Businesses"`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business|Businesses"`
 
 &nbsp;<br>
 
@@ -22,7 +22,7 @@ Along with the above functionality the script can optionally be started to searc
 
 For example, if you search the BBC again for the regex pattern Business|Businesses and wanted to discover all of the pages that also contained the words "British Glass" you would start the script like this:
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business" -ExactKeyword "British Glass"`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://news.bbc.co.uk" -SearchRegex "Business" -ExactKeyword "British Glass"`
 
 If the "ExtactKeyword" is found it will be displayed in the results otherwise it will report "Not Found". Important: The "ExactKeyword" will only be searched for if the page matches the SearchRegex pattern.
 
@@ -56,7 +56,7 @@ If you don't want it to search any pages from the site "def.com" then you would 
 
 `$ExcludedDomains = @("def.com")`
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
 
 &nbsp;<br>
 
@@ -64,7 +64,7 @@ If you wanted to exclude multiple domains you would do it like this:
 
 `$ExcludedDomains = @("def.com","jkl.com")`
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrDomainExceptions $ExcludedDomains`
 
 *Note that each domain to exclude is separated by a comma.*
 
@@ -75,7 +75,7 @@ It is also possible to exclude specific pages from being scanned. To do this sta
 
 `$ExcludedPages = @("abc.com/Page")`
 
-`.\ps_Util_WebsiteStringScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages`
+`.\ps_Util_WebsiteContentScan.ps1 -url "https://abc.com" -SearchRegex "Business" -arrPageExceptions $ExcludedPages`
 
 
 &nbsp;<br><br>
